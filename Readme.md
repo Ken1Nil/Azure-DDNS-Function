@@ -4,7 +4,7 @@ Host type: Powershell
 
 View the code in /Source/DDNSFunctionScript/run.ps1
 
-Handles multiple DNS zones (if you have it) in one ResourceGroup
+Handles multiple DNS zones (if you have it) in one ResourceGroup. Updates or Creates A Record with TTL 60.
 
 ## Authentication
 APIKey and/or username+password
@@ -31,7 +31,9 @@ Using username+password:
 
 https://yourfunctionapp.azurewebsites.net/api/DDNSFunctionScript?user=youruser&password=base64encodedpassword&hostname=recordname.yourdnszone.com&myip=127.0.0.1
 
+For APEX domains e.g "yourdnszone.com" use "@.yourdnszone.com"
 
+https://yourfunctionapp.azurewebsites.net/api/DDNSFunctionScript?hostname=@.yourdnszone.com&myip=127.0.0.1
 
-
-_This repo has added functionality from Graham Gold https://github.com/goldjg blogpost: https://www.cirriustech.co.uk/blog/create-dynamic-dns-azure-dns-pt2/_
+## Credits
+This repo has added functionality from Graham Gold https://github.com/goldjg blogpost: https://www.cirriustech.co.uk/blog/create-dynamic-dns-azure-dns-pt2/

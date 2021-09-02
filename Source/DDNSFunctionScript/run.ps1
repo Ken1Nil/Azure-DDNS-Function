@@ -60,6 +60,25 @@ elseif ($Request.Query.user -And $Request.Query.password) {
     }
 }
 
+# Validate that two '.' is in hostname, for APEX use '@.domain.com'
+if ($Request.Query.hostname.Length - $Request.Query.hostname.replace(".","").Length -ne 2) {
+    write-host "hostname input does not contain two '.' please use hostname=@.domain.com in query for APEX domains"
+    Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+                StatusCode = [HttpStatusCode]::BadRequest
+                Body       = "400 - hostname format wrong"
+            })
+    exit
+}
+# Validate ip
+$validIP = $Request.Query.myip -as [System.Net.IPAddress] -as [Bool]
+if (!$validIP) {
+    write-host "IP cant be cast to the IPv4 type. IP Address format wrong"
+    Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+                StatusCode = [HttpStatusCode]::BadRequest
+                Body       = "400 - myip format wrong"
+            })
+    exit
+}
 # Gets first Azure DNS Zone
 $AutoDetect = (get-azresource -ResourceType "Microsoft.Network/dnszones")
 If (@($Autodetect.Name).Count -eq 1) {
