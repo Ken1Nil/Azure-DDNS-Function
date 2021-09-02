@@ -35,5 +35,10 @@ For APEX domains e.g "yourdnszone.com" use "@.yourdnszone.com"
 
 https://yourfunctionapp.azurewebsites.net/api/DDNSFunctionScript?hostname=@.yourdnszone.com&myip=127.0.0.1
 
+## DDNS Client setup:
+
+If you are using a DDNS Client that can handle custom URL:s
+https://yourfunctionapp.azurewebsites.net/api/DDNSFunctionScript?user=[USERNAME]&password=[PASSWORD]&hostname=[DOMAIN]&myip=[IP]
+
 ## Credits
 This repo has added functionality from Graham Gold https://github.com/goldjg blogpost: https://www.cirriustech.co.uk/blog/create-dynamic-dns-azure-dns-pt2/
